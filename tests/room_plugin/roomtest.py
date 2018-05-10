@@ -1,6 +1,7 @@
 from errbot import BotPlugin
 from queue import Queue
 import logging
+
 log = logging.getLogger(__name__)
 
 

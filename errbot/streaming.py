@@ -27,6 +27,7 @@ def repeatfunc(func, times=None, *args):  # from the itertools receipes
 
 class Tee(object):
     """ Tee implements a multi reader / single writer """
+
     def __init__(self, incoming_stream, clients):
         """ clients is a list of objects implementing callback_stream """
         self.incoming_stream = incoming_stream
@@ -41,7 +42,7 @@ class Tee(object):
     def run(self):
         """ streams to all the clients synchronously """
         nb_clients = len(self.clients)
-        pipes = [(io.open(r, 'rb'), io.open(w, 'wb')) for r, w in repeatfunc(os.pipe, nb_clients)]
+        pipes = [(io.open(r, "rb"), io.open(w, "wb")) for r, w in repeatfunc(os.pipe, nb_clients)]
         streams = [self.incoming_stream.clone(pipe[0]) for pipe in pipes]
 
         def streamer(index):
